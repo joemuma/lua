@@ -1,0 +1,13 @@
+table = {}
+table.find = function(T,V,S)
+    local StartingPoint = 1
+    if type(T) ~= "table" then return nil end
+    if S and type(S) == "number" then StartingPoint = S end
+    for i=StartingPoint,math.huge do
+        if T[i] == V then
+            return true,i
+        elseif T[i] == nil then
+            return nil
+        end
+    end
+end
