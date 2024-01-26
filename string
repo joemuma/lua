@@ -1,0 +1,36 @@
+string.split = function(String,Split)
+    if not Split then
+        return {String}
+    elseif String:find(Split) then
+        local t={}
+        if Split == "" then
+            for i=1,#String do
+                table.insert(t,string.sub(String,i,i))
+            end
+            return t
+        else
+            for i=1,#String do
+                if not string.find(String,Split) then
+                    table.insert(t,string.sub(String,1,#String))
+                    break
+                end
+                a,b = string.find(String,Split)
+                c = 1
+                if a == 1 then
+                    c,a = 0,0
+                end
+                if a == b then
+                    if a == 1 then
+                        table.insert(t,"")
+                    else
+                        table.insert(t,string.sub(String,1,b-1))
+                    end
+                else
+                    table.insert(t,string.sub(String,a,b-1))
+                end
+                String = string.sub(String,b+1,#String)
+            end
+        end
+        return t
+    end
+end
